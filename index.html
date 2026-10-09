@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Quentin Kuntzmann — Artiste peintre</title>
+<meta name="description" content="Portfolio de Quentin Kuntzmann, artiste peintre. Œuvres inspirées des Écritures et de la vie de famille. Commandes sur mesure."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #211a14;
+  --ink-soft: #4a4038;
+  --paper: #ece3d2;
+  --paper-light: #f7f2e8;
+  --line: rgba(33,26,20,0.14);
+  --gold: #a1802f;
+  --oxide: #8c3327;
+  --sage: #5b6650;
+  --radius: 2px;
+  --maxw: 1360px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper-light);
+  color: var(--ink);
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; margin: 0; }
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px clamp(20px, 4vw, 56px);
+  background: rgba(247,242,232,0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .mark {
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+  font-size: 1.05rem; letter-spacing: 0.01em;
+}
+.site-header nav { display: flex; gap: clamp(16px, 3vw, 32px); }
+.site-header nav a {
+  text-decoration: none; font-size: 0.82rem; letter-spacing: 0.03em;
+  color: var(--ink-soft); border-bottom: 1px solid transparent; padding-bottom: 2px;
+  transition: border-color .2s, color .2s;
+}
+.site-header nav a:hover { color: var(--oxide); border-color: var(--oxide); }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  background: var(--ink);
+  color: var(--paper-light);
+  padding: clamp(56px,10vw,104px) clamp(20px,4vw,56px) clamp(40px,6vw,64px);
+  overflow: hidden;
+}
+.hero-inner { max-width: var(--maxw); margin: 0 auto; position: relative; z-index: 2; }
+.hero .eyebrow { color: var(--gold); }
+.hero h1 {
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 1.02;
+  margin-top: 14px;
+  max-width: 14ch;
+}
+.hero h1 em { font-style: italic; color: #d9c48a; font-weight: 400; }
+.hero p.tagline {
+  margin-top: 22px; max-width: 46ch; font-size: 1.08rem; color: #d8d0c2; font-weight: 300;
+}
+.hero-cta { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.76rem; letter-spacing: 0.06em;
+  text-transform: uppercase; text-decoration: none; cursor: pointer;
+  padding: 13px 22px; border-radius: var(--radius); border: 1px solid currentColor;
+  background: transparent; color: inherit; transition: background .2s, color .2s;
+}
+.btn--solid { background: var(--oxide); border-color: var(--oxide); color: #fff; }
+.btn--solid:hover { background: #722923; }
+.btn--ghost { color: var(--paper-light); }
+.btn--ghost:hover { background: rgba(247,242,232,0.1); }
+
+.filmstrip {
+  margin-top: clamp(40px,7vw,64px);
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(120px,1fr);
+  gap: 10px; max-width: var(--maxw);
+}
+.filmstrip-frame {
+  aspect-ratio: 4/5; overflow: hidden; border-radius: var(--radius);
+  filter: sepia(8%) saturate(92%);
+  opacity: 0.88;
+}
+.filmstrip-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.brush { display: block; width: 100%; height: 22px; margin: 0; }
+.brush path { fill: var(--gold); opacity: 0.55; }
+
+/* ---------- layout bands ---------- */
+.layout {
+  max-width: var(--maxw); margin: 0 auto;
+  display: grid;
+  grid-template-columns: 258px minmax(0,1fr) 280px;
+  gap: clamp(20px, 3vw, 48px);
+  padding: clamp(40px,6vw,64px) clamp(20px,4vw,56px) clamp(60px,8vw,96px);
+  align-items: start;
+}
+.band { position: sticky; top: 84px; }
+.band h2 { font-size: 1.3rem; margin-top: 10px; }
+.band .band-body { margin-top: 18px; font-size: 0.93rem; color: var(--ink-soft); }
+.band .band-body p { margin: 0 0 14px; }
+.band .band-body strong { color: var(--ink); font-weight: 600; }
+
+.bio-portrait {
+  width: 100%; aspect-ratio: 4/5; overflow: hidden; border-radius: var(--radius);
+  margin-bottom: 4px;
+}
+.bio-portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+.services-band .card {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 18px 18px 20px; margin-top: 16px; border-radius: var(--radius);
+}
+.services-band .card .opt-label { font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; color: var(--gold); }
+.services-band .card h3 { font-size: 1.02rem; margin-top: 8px; line-height:1.3; }
+.services-band .card p { font-size: 0.87rem; color: var(--ink-soft); margin-top: 8px; }
+.services-band .cta { margin-top: 20px; width: 100%; justify-content: center; }
+
+/* ---------- gallery / accordion ---------- */
+.gallery-head { margin-bottom: 22px; }
+.gallery-head h2 { font-size: clamp(1.6rem, 2.4vw, 2rem); margin-top: 8px; }
+.gallery-head p { color: var(--ink-soft); margin-top: 10px; max-width: 58ch; font-size: 0.95rem; }
+
+.artwork {
+  border-top: 1px solid var(--line);
+}
+.artwork:last-child { border-bottom: 1px solid var(--line); }
+.artwork summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: baseline; gap: 16px;
+  padding: 20px 4px;
+  -webkit-tap-highlight-color: transparent;
+}
+.artwork summary::-webkit-details-marker { display: none; }
+.artwork-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--gold);
+  min-width: 22px;
+}
+.artwork-title {
+  font-family: 'Fraunces', serif; font-size: clamp(1.05rem, 1.6vw, 1.3rem); font-weight: 500;
+  flex: 1;
+}
+.artwork-medium {
+  font-size: 0.78rem; color: var(--ink-soft); font-style: italic; display: none;
+}
+@media (min-width: 720px) { .artwork-medium { display: block; } }
+.chevron { color: var(--gold); transition: transform .25s ease; flex-shrink:0; }
+.artwork[open] .chevron { transform: rotate(180deg); }
+
+.artwork-body {
+  display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: 32px;
+  padding: 4px 4px 34px;
+}
+@media (max-width: 720px) { .artwork-body { grid-template-columns: 1fr; } }
+.artwork-media { border-radius: var(--radius); overflow: hidden; }
+.artwork-media img { width: 100%; height: auto; }
+
+.artwork-details {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(84px,1fr));
+  gap: 8px; margin-top: 10px;
+}
+.detail-thumb { margin: 0; }
+.detail-thumb img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius);
+  opacity: 0.92; transition: opacity .2s;
+}
+.detail-thumb img:hover { opacity: 1; }
+.detail-thumb figcaption {
+  font-size: 0.66rem; color: var(--ink-soft); margin-top: 4px; line-height: 1.25;
+}
+
+.passage { border-left: 2px solid var(--gold); padding-left: 16px; margin-bottom: 20px; }
+.passage--muted { border-left-color: var(--line); }
+.passage-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-soft); margin: 0 0 6px;
+}
+.passage-label .ref { color: var(--oxide); font-weight: 500; margin-left: 6px; }
+.passage-text { font-family: 'Fraunces', serif; font-style: italic; font-size: 0.98rem; color: var(--ink); margin: 0; line-height: 1.55; }
+
+.vision-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gold); margin: 0 0 8px;
+}
+.vision-text { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
+
+.mini-cta {
+  margin-top: 20px; background: none; border: none; padding: 0; cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em;
+  color: var(--oxide); text-transform: uppercase; border-bottom: 1px solid transparent;
+}
+.mini-cta:hover { border-color: var(--oxide); }
+
+/* ---------- mobile stacking ---------- */
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+  .band { position: static; }
+  .bio-band { order: 1; }
+  .gallery-band { order: 2; }
+  .services-band { order: 3; }
+}
+
+/* ---------- contact ---------- */
+.contact {
+  background: var(--ink); color: var(--paper-light);
+  padding: clamp(56px,8vw,96px) clamp(20px,4vw,56px);
+}
+.contact-inner { max-width: 640px; margin: 0 auto; }
+.contact .eyebrow { color: var(--gold); }
+.contact h2 { font-size: clamp(1.8rem,3vw,2.4rem); margin-top: 12px; color: var(--paper-light); }
+.contact p.lead { color: #cfc6b6; margin-top: 14px; font-size: 0.98rem; max-width: 52ch; }
+
+form.commission-form { margin-top: 40px; display: grid; gap: 20px; }
+.field { display: grid; gap: 8px; }
+.field label { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: #cfc6b6; }
+.field input, .field textarea, .field select {
+  background: rgba(247,242,232,0.06); border: 1px solid rgba(247,242,232,0.25);
+  color: var(--paper-light); padding: 12px 14px; font-family: 'Work Sans', sans-serif;
+  font-size: 0.95rem; border-radius: var(--radius); outline: none;
+  transition: border-color .2s, background .2s;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  border-color: var(--gold); background: rgba(247,242,232,0.1);
+}
+.field textarea { min-height: 130px; resize: vertical; }
+.radio-group { display: flex; gap: 22px; flex-wrap: wrap; }
+.radio-option {
+  display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #e6e0d3; cursor: pointer;
+}
+.radio-option input { accent-color: var(--gold); width: 16px; height: 16px; }
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
+
+.honeypot { position: absolute; left: -9999px; opacity: 0; height: 0; }
+
+.submit-row { display: flex; align-items: center; gap: 18px; margin-top: 6px; flex-wrap: wrap; }
+.form-note { font-size: 0.78rem; color: #9c927f; }
+.form-status { font-size: 0.85rem; }
+.form-status.ok { color: #b7c9a6; }
+.form-status.err { color: #d99a8c; }
+
+footer {
+  padding: 28px clamp(20px,4vw,56px); text-align: center;
+  font-size: 0.78rem; color: var(--ink-soft); background: var(--paper-light);
+  border-top: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="mark">Quentin Kuntzmann</span>
+  <nav>
+    <a href="#oeuvres">Œuvres</a>
+    <a href="#commandes">Commandes</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Artiste peintre — Beaujolais</span>
+    <h1>Peindre l’<em>Évangile</em><br/>et le quotidien</h1>
+    <p class="tagline">Une vingtaine de toiles nées en un seul semestre, entre références bibliques,
+      clins d’œil contemporains et scènes de vie de famille.</p>
+    <div class="hero-cta">
+      <a href="#oeuvres" class="btn btn--ghost">Découvrir les œuvres</a>
+      <a href="#contact" class="btn btn--solid">Commander une œuvre</a>
+    </div>
+    <div class="filmstrip">
+      <div class="filmstrip-frame"><img src="images/la-peche-miraculeuse.jpg" alt="" loading="lazy"/></div>
+<div class="filmstrip-frame"><img src="images/la-peche-miraculeuse-detail-1.jpg" alt="" loading="lazy"/></div>
+<div class="filmstrip-frame"><img src="images/les-dix-vierges-detail-1.jpg" alt="" loading="lazy"/></div>
+<div class="filmstrip-frame"><img src="images/la-peche-miraculeuse-detail-4.jpg" alt="" loading="lazy"/></div>
+    </div>
+  </div>
+</section>
+
+<svg class="brush" viewBox="0 0 1200 22" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 12 C 150 4, 300 20, 450 10 C 600 2, 750 18, 900 9 C 1000 4, 1100 16, 1200 11 L1200 14 C1100 19,1000 7,900 12 C750 21,600 5,450 13 C300 23,150 7,0 15 Z"/>
+</svg>
+
+<div class="layout">
+
+  <aside class="band bio-band">
+    <span class="eyebrow">L’artiste</span>
+    <h2>Présentation</h2>
+    <div class="band-body">
+      <p><strong>Peintre de la maturité,</strong> Quentin renoue avec les pinceaux abandonnés
+      vingt ans plus tôt. Ancien professeur d’histoire-géographie, il quitte le Nord pour le
+      Beaujolais — et c’est la lumière de sa nouvelle terre qui le galvanise : une vingtaine de
+      toiles naîtront en un seul semestre.</p>
+      <p><strong>Sa foi catholique est le fil rouge de son œuvre&nbsp;:</strong> chaque toile
+      revisite un passage de l’Évangile qui lui est cher, dans un savant jeu de piste où
+      références bibliques et clins d’œil contemporains se répondent. Réalisme, surréalisme,
+      art naïf, cubisme&nbsp;: il explore plusieurs langages picturaux pour livrer des œuvres
+      uniques et mémorables.</p>
+      <p><strong>Père de quatre enfants,</strong> il porte aussi un regard tendre sur la vie de
+      famille, où il retrouve, dans les jeux et le rythme du quotidien, l’œuvre discrète de
+      l’Amour de Dieu.</p>
+    </div>
+  </aside>
+
+  <main class="band gallery-band" id="oeuvres" style="position:static;">
+    <div class="gallery-head">
+      <span class="eyebrow">Portfolio — 16 œuvres</span>
+      <h2>Le cycle des Écritures</h2>
+      <p>Chaque toile associe, quand elle existe, le passage biblique qui l’a inspirée et le
+      regard porté par l’artiste sur son propre travail. Cliquez sur un titre pour déplier.
+      Une œuvre vous touche particulièrement&nbsp;? Elle est peut-être encore disponible à
+      l’achat — un simple message depuis sa fiche suffit pour nous le demander.</p>
+    </div>
+    <div class="accordion">
+      
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">01</span>
+            <span class="artwork-title">Vierge à l’enfant</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/vierge-a-lenfant.jpg" alt="Vierge à l’enfant, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+            <div class="artwork-details">
+            <figure class="detail-thumb">
+              <img src="images/vierge-a-lenfant-detail-1.jpg" alt="Vierge à l’enfant — Sur le chevalet, lumière du Beaujolais" loading="lazy"/>
+              <figcaption>Sur le chevalet, lumière du Beaujolais</figcaption>
+            </figure>
+            </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage passage--muted">
+                <p class="passage-label">Référence non précisée</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Toile inaugurale du cycle, elle pose les bases du langage pictural de Quentin : une Vierge tout en douceur, silhouette épurée et couleurs chaudes, qui doit autant à l’iconographie mariale classique qu’à un regard contemporain et naïf. La tendresse du geste maternel ouvre la série comme une promesse : celle d’un art qui conjugue foi profonde et fraîcheur du trait.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Vierge à l’enfant">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">02</span>
+            <span class="artwork-title">Le bon berger</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/le-bon-berger.jpg" alt="Le bon berger, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Jean 10, 11-16</span></p>
+                <p class="passage-text">Jésus se présente comme le bon pasteur, celui qui donne sa vie pour ses brebis — à la différence du mercenaire, qui s’enfuit dès que le loup approche parce que les brebis ne sont pas siennes. Il connaît ses brebis comme elles le connaissent, et veut rassembler celles qui sont hors de l’enclos, pour qu’il n’y ait plus qu’un seul troupeau et un seul berger.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Quentin construit la scène entre réalisme du personnage et stylisation du paysage beaujolais, ancrant cette vérité intemporelle dans la lumière familiere de sa terre d’adoption. Le détail de la brebis isolée, à l’écart près des rochers, semble faire écho à la brebis perdue que le berger part chercher (Luc 15, 4-7) — comme si Quentin superposait, en une seule image, la promesse du bon pasteur et le soin porté à celui qui s’égare.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Le bon berger">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">03</span>
+            <span class="artwork-title">Cœur sacré</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/coeur-sacre.jpg" alt="Cœur sacré, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+            <div class="artwork-details">
+            <figure class="detail-thumb">
+              <img src="images/coeur-sacre-detail-1.jpg" alt="Cœur sacré — Sur le chevalet, à l'heure dorée" loading="lazy"/>
+              <figcaption>Sur le chevalet, à l'heure dorée</figcaption>
+            </figure>
+            </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Jean 7, 37-39</span></p>
+                <p class="passage-text">Lors de la fête des Tentes, Jésus se tient debout et proclame : que celui qui a soif vienne à lui et boive ; de celui qui croit en lui jailliront des fleuves d’eau vive. Le texte précise que cette eau vive annonce l’Esprit que recevront ceux qui croient.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Le Cœur sacré, irradiant de rouges et d’ors, donne une forme visuelle à cette promesse d’eau vive : un cœur qui ne se contient pas, qui déborde et se répand. Quentin traduit le débordement du texte biblique par un jaillissement de couleur et de lumière, faisant de la toile une source à laquelle le regard vient, lui aussi, s’abreuver.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Cœur sacré">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">04</span>
+            <span class="artwork-title">La pêche miraculeuse</span>
+            <span class="artwork-medium">Huile sur toile XL</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/la-peche-miraculeuse.jpg" alt="La pêche miraculeuse, Huile sur toile XL, Quentin Kuntzmann" loading="lazy"/>
+            <div class="artwork-details">
+            <figure class="detail-thumb">
+              <img src="images/la-peche-miraculeuse-detail-1.jpg" alt="La pêche miraculeuse — Une partie du cycle, réunie dans l'atelier" loading="lazy"/>
+              <figcaption>Une partie du cycle, réunie dans l'atelier</figcaption>
+            </figure>
+            <figure class="detail-thumb">
+              <img src="images/la-peche-miraculeuse-detail-2.jpg" alt="La pêche miraculeuse — En cours de réalisation, dans l'atelier" loading="lazy"/>
+              <figcaption>En cours de réalisation, dans l'atelier</figcaption>
+            </figure>
+            <figure class="detail-thumb">
+              <img src="images/la-peche-miraculeuse-detail-3.jpg" alt="La pêche miraculeuse — Installée à l'intérieur" loading="lazy"/>
+              <figcaption>Installée à l'intérieur</figcaption>
+            </figure>
+            <figure class="detail-thumb">
+              <img src="images/la-peche-miraculeuse-detail-4.jpg" alt="La pêche miraculeuse — Détail : le foisonnement des poissons" loading="lazy"/>
+              <figcaption>Détail : le foisonnement des poissons</figcaption>
+            </figure>
+            <figure class="detail-thumb">
+              <img src="images/la-peche-miraculeuse-detail-5.jpg" alt="La pêche miraculeuse — Détail : les poissons, autre cadrage" loading="lazy"/>
+              <figcaption>Détail : les poissons, autre cadrage</figcaption>
+            </figure>
+            <figure class="detail-thumb">
+              <img src="images/la-peche-miraculeuse-detail-6.jpg" alt="La pêche miraculeuse — Détail : les poissons, autre cadrage" loading="lazy"/>
+              <figcaption>Détail : les poissons, autre cadrage</figcaption>
+            </figure>
+            <figure class="detail-thumb">
+              <img src="images/la-peche-miraculeuse-detail-7.jpg" alt="La pêche miraculeuse — Détail : un visage entre abstraction et lumière" loading="lazy"/>
+              <figcaption>Détail : un visage entre abstraction et lumière</figcaption>
+            </figure>
+            </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Luc 5, 1-11</span></p>
+                <p class="passage-text">Jésus enseigne depuis la barque de Simon, sur le lac de Génésareth. Son discours achevé, il demande à Simon d’avancer en eau profonde et de jeter les filets. Simon obtempere malgré une nuit entière sans rien prendre — et les filets se remplissent au point de se déchirer. Saisi, Pierre tombe aux genoux de Jésus : « Eloigne-toi de moi, Seigneur, car je suis un homme pécheur. » Jésus lui répond : « Sois sans crainte, désormais tu seras pêcheur d’hommes. »</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Toile de grand format, elle déploie toute l’énergie du récit : la barque, les filets qui se tendent à rompre, la surprise d’une abondance qu’aucun effort humain n’aurait pu produire. Le format XL n’est pas un hasard : il donne au spectateur la sensation d’être lui-même embarqué, saisi par le même vertige — celui d’une confiance qui dépasse ce qu’on croyait possible, et qui, comme pour Pierre, change une trajectoire entière.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="La pêche miraculeuse">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">05</span>
+            <span class="artwork-title">Les dix vierges</span>
+            <span class="artwork-medium">Huiles sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/les-dix-vierges.jpg" alt="Les dix vierges, Huiles sur toile, Quentin Kuntzmann" loading="lazy"/>
+            <div class="artwork-details">
+            <figure class="detail-thumb">
+              <img src="images/les-dix-vierges-detail-1.jpg" alt="Les dix vierges — Dans l'atelier, à la maison" loading="lazy"/>
+              <figcaption>Dans l'atelier, à la maison</figcaption>
+            </figure>
+            </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Matthieu 25, 1-13</span></p>
+                <p class="passage-text">Dix jeunes filles attendent l’époux avec leurs lampes : cinq sont prévoyantes et emportent de l’huile, cinq n’en emportent pas. L’époux tarde, toutes s’endorment ; seules celles qui avaient de l’huile peuvent entrer aux noces. Le texte conclut : veillez, car vous ne savez ni le jour ni l’heure.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Quentin aligne ses dix silhouettes comme une frise, jouant du clair-obscur pour distinguer celles dont la lampe brille encore de celles dont la flamme vacille. La toile est une invitation à la vigilance autant qu’un exercice de composition rythmique, chaque figure répondant à la suivante comme les temps d’une même veillée.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Les dix vierges">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">06</span>
+            <span class="artwork-title">Le semeur</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/le-semeur.jpg" alt="Le semeur, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Matthieu 13, 1-23</span></p>
+                <p class="passage-text">Dans la parabole du semeur, la graine tombe sur le chemin, sur la pierre, parmi les ronces ou en bonne terre, où elle porte du fruit au centuple. Jésus explique ensuite que la graine est la Parole, et que la qualité de la terre dépend de la manière dont chacun l’accueille.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Le Semeur donne corps à cette parabole par l’image d’une pousse qui s’enracine et se greffe à la vigne : une terre nourriciere, des racines profondes, la promesse d’un fruit abondant. Quentin y célèbre, en creux, sa propre expérience : celle d’un homme qui a laissé la peinture reprendre racine après vingt années de mise en sommeil.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Le semeur">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">07</span>
+            <span class="artwork-title">Le riche</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/le-riche.jpg" alt="Le riche, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Luc 12, 13-21</span></p>
+                <p class="passage-text">Un homme demande à Jésus d’arbitrer un héritage ; Jésus met en garde contre la cupidité et raconte l’histoire d’un riche dont les terres ont si bien produit qu’il décide d’abattre ses greniers pour en bâtir de plus grands. Dieu lui répond : cette nuit même on te redemande ton âme ; et ce que tu as amassé, pour qui sera-t-il ?</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Quentin actualise la parabole en prêtant les traits d’un magnat de la tech à son riche insensé : les liasses de pièces d’or frappées du symbole bitcoin remplacent les greniers antiques, et l’oiseau perché dans l’arbre n’est pas choisi au hasard — il évoque, avec un clin d’œil malicieux, l’emblème d’un célèbre réseau social. Une manière très actuelle de poser la même question que le texte : à quoi bon accumuler, si l’âme peut être redemandée cette nuit même ?</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Le riche">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">08</span>
+            <span class="artwork-title">Le boulanger</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/le-boulanger.jpg" alt="Le boulanger, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+            <div class="artwork-details">
+            <figure class="detail-thumb">
+              <img src="images/le-boulanger-detail-1.jpg" alt="Le boulanger — Détail : la feuille d'or" loading="lazy"/>
+              <figcaption>Détail : la feuille d'or</figcaption>
+            </figure>
+            </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Matthieu 13, 33</span></p>
+                <p class="passage-text">Jésus compare le royaume des cieux au levain qu’une femme mêle à trois mesures de farine, jusqu’à ce que toute la pâte soit levée.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">En choisissant la figure du boulanger, Quentin ramène la parabole à un geste quotidien et familier : pétrir, attendre, faire lever. Le sujet fait écho à sa propre vie de père de famille nombreuse, où il retrouve dans les gestes domestiques la même œuvre patiente et silencieuse que celle du royaume qui grandit de l’intérieur.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Le boulanger">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">09</span>
+            <span class="artwork-title">La jeune pousse</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/la-jeune-pousse.jpg" alt="La jeune pousse, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Matthieu 13, 3-9</span></p>
+                <p class="passage-text">Dans la suite de la parabole du semeur, une partie de la graine tombe en bonne terre et y produit du fruit, trente, soixante ou cent fois plus.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">La Jeune Pousse s’attarde sur cet instant fragile où la graine perce la terre : promesse encore incertaine, mais déjà vivante. Le geste pictural, plus délicat, plus naïf que dans les autres toiles, épouse la fragilité du sujet et fait écho, une fois encore, au propre recommencement artistique de Quentin.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="La jeune pousse">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">10</span>
+            <span class="artwork-title">La veuve</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/la-veuve.jpg" alt="La veuve, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+            </div>
+            <div class="artwork-text">
+              <div class="passage passage--muted">
+                <p class="passage-label">Référence non précisée</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Elle capte un geste minuscule et pourtant immense : une offrande donnée dans le dénuement, sans calcul ni mise en scène. Quentin choisit la sobriété — peu de couleurs, une silhouette recueillie — pour que la toile porte, par son silence même, la dignité du don total.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="La veuve">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">11</span>
+            <span class="artwork-title">Les Maques – Cilaos</span>
+            <span class="artwork-medium">Paysage, huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/les-maques-cilaos.jpg" alt="Les Maques – Cilaos, Paysage, huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+            </div>
+            <div class="artwork-text">
+              <div class="passage passage--muted">
+                <p class="passage-label">Paysage</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Le temps d’une toile, Quentin quitte le cycle biblique pour un paysage puisé dans les reliefs de La Réunion. La toile témoigne de sa capacité à faire varier son geste selon le sujet : ici, la lumière et la matière du paysage priment — la preuve que son art ne se limite pas à un seul registre.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Les Maques – Cilaos">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">12</span>
+            <span class="artwork-title">Le bon samaritain</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/le-bon-samaritain.jpg" alt="Le bon samaritain, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <div class="artwork-details">
+              <figure class="detail-thumb">
+                <img src="images/le-bon-samaritain-detail-1.jpg" alt="Le bon samaritain — Détail : le Samaritain et l’étoffe rouge" loading="lazy"/>
+                <figcaption>Détail : le Samaritain et l’étoffe rouge</figcaption>
+              </figure>
+              </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Luc 10, 25-37</span></p>
+                <p class="passage-text">À un docteur de la Loi qui lui demande ce qu’il faut faire pour hériter de la vie éternelle, Jésus répond par l’amour de Dieu et du prochain, puis raconte : un homme, dépouillé et laissé à demi mort sur la route de Jéricho, est ignoré par un prêtre puis par un lévite. Un Samaritain s’arrête, soigne ses plaies, le conduit à l’auberge et paie les frais. «&nbsp;Lequel s’est montré le prochain&nbsp;? — Celui qui a fait preuve de miséricorde. — Va, et toi aussi, fais de même.&nbsp;»</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Quentin transpose la route de Jéricho sur un bitume d’aujourd’hui, de nuit, sous un ciel étoilé : panneau «&nbsp;Samarie&nbsp;», lampadaire, glissière de sécurité, scooter renversé. Le Samaritain, nimbé de la lumière jaune du réverbère, presse une étoffe rouge sur la blessure d’un homme en tee-shirt vert. Autour de lui, l’indifférence a des visages contemporains : un homme, téléphone à la main, qui reste à distance, une passagère qui regarde derrière sa vitre, sans pouvoir agir, une passante qui s’éloigne. Seul le cercle de lumière réunit le blessé et celui qui s’est arrêté.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Le bon samaritain">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">13</span>
+            <span class="artwork-title">La pierre d’angle</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/la-pierre-dangle.jpg" alt="La pierre d’angle, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <div class="artwork-details">
+              <figure class="detail-thumb">
+                <img src="images/la-pierre-dangle-detail-1.jpg" alt="La pierre d’angle — Détail : le bloc d’or en relief" loading="lazy"/>
+                <figcaption>Détail : le bloc d’or en relief</figcaption>
+              </figure>
+              </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Luc 20, 17-19</span></p>
+                <p class="passage-text">Jésus fixe son regard sur ceux qui l’écoutent : «&nbsp;Que signifie cette parole de l’Écriture : <em>La pierre qu’ont rejetée les bâtisseurs est devenue la pierre d’angle</em>&nbsp;? Quiconque tombera sur cette pierre s’y brisera ; et celui sur qui elle tombera sera écrasé.&nbsp;» Scribes et grands prêtres cherchent aussitôt à l’arrêter : ils ont compris que la parabole visait leur propre conduite.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Quentin lit ce verset du psaume à deux niveaux. Au premier regard, la toile montre une rupture : la nuit bleue des vieillards à capuche face au jour doré des églises, deux mondes qui se regardent en chiens de faïence. Mais le psaume est une louange : Dieu n’abandonne pas ceux que tous avaient rejetés (Moïse bègue, David berger, Amos cultivateur, Gédéon le plus faible des siens). À droite, trois édifices qu’il aime pour leur beauté, un par grande branche du christianisme : le temple Saint-Guillaume et la cathédrale Notre-Dame de Strasbourg, et une église orthodoxe qu’il a dû inventer. Schisme&nbsp;? Il ne le croit pas : deux murs bâtis côte à côte sans se lier s’effondrent, et la pierre d’angle, bloc d’or en relief, les relie en s’appuyant sur l’un puis sur l’autre. Pierre d’angle, non première pierre : le Christ n’est pas venu détruire ni recommencer, mais faire le lien.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="La pierre d’angle">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">14</span>
+            <span class="artwork-title">Le vigneron</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/le-vigneron.jpg" alt="Le vigneron, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <div class="artwork-details">
+              <figure class="detail-thumb">
+                <img src="images/le-vigneron-detail-1.jpg" alt="Le vigneron — Détail : le visage du vigneron" loading="lazy"/>
+                <figcaption>Détail : le visage du vigneron</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/le-vigneron-detail-2.jpg" alt="Le vigneron — Détail : la taille du cep" loading="lazy"/>
+                <figcaption>Détail : la taille du cep</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/le-vigneron-detail-3.jpg" alt="Le vigneron — Détail : les grappes et la tour dorée" loading="lazy"/>
+                <figcaption>Détail : les grappes et la tour dorée</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/le-vigneron-detail-4.jpg" alt="Le vigneron — Détail : le soleil dans les nuages" loading="lazy"/>
+                <figcaption>Détail : le soleil dans les nuages</figcaption>
+              </figure>
+              </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Jean 15, 1-8</span></p>
+                <p class="passage-text">Jésus se dit la vraie vigne, et son Père le vigneron : tout sarment qui ne porte pas de fruit est retranché, tout sarment qui en porte est émondé pour en porter davantage. Un sarment ne peut porter du fruit de lui-même, il lui faut demeurer dans la vigne : «&nbsp;Sans moi, vous ne pouvez rien faire.&nbsp;» Qui demeure en lui porte beaucoup de fruit, et glorifie ainsi le Père.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Quentin ancre la parabole dans les coteaux de sa terre d’adoption : rangs de vigne, tour de pierre dorée à l’horizon, ciel où un soleil perce les nuages. Au premier plan, un vigneron à barbe blanche et tablier vert, à genoux, sécateur en main, taille le cep ; à ses côtés, les sarments coupés brûlent, rappel du verset 6, tandis que de lourdes grappes violettes pendent au sarment. La taille, geste qui peut sembler dur, est peinte comme un geste d’attention.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Le vigneron">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">15</span>
+            <span class="artwork-title">Les maisons</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/les-maisons.jpg" alt="Les maisons, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <div class="artwork-details">
+              <figure class="detail-thumb">
+                <img src="images/les-maisons-detail-3.jpg" alt="Les maisons — Détail : sous le sable, les figures isolées" loading="lazy"/>
+                <figcaption>Détail : sous le sable, les figures isolées</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/les-maisons-detail-4.jpg" alt="Les maisons — Détail : sous le roc, la lecture, l’entraide, la famille" loading="lazy"/>
+                <figcaption>Détail : sous le roc, la lecture, l’entraide, la famille</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/les-maisons-detail-2.jpg" alt="Les maisons — Détail : la maison sur le sable" loading="lazy"/>
+                <figcaption>Détail : la maison sur le sable</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/les-maisons-detail-1.jpg" alt="Les maisons — Détail : la maison sur le roc" loading="lazy"/>
+                <figcaption>Détail : la maison sur le roc</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/les-maisons-detail-6.jpg" alt="Les maisons — La moitié «&nbsp;sable&nbsp;», de plus près" loading="lazy"/>
+                <figcaption>La moitié «&nbsp;sable&nbsp;», de plus près</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/les-maisons-detail-5.jpg" alt="Les maisons — La moitié «&nbsp;roc&nbsp;», de plus près" loading="lazy"/>
+                <figcaption>La moitié «&nbsp;roc&nbsp;», de plus près</figcaption>
+              </figure>
+              </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Matthieu 7, 24-27</span></p>
+                <p class="passage-text">Conclusion du Sermon sur la montagne. Celui qui écoute les paroles de Jésus et les met en pratique ressemble à un homme avisé qui a bâti sa maison sur le roc : pluie, torrents et vents s’abattent sur elle, elle ne s’écroule pas. Celui qui les écoute sans les pratiquer ressemble à un insensé qui a bâti sur le sable : la maison s’effondre, et sa ruine est grande.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Quentin coupe la toile en deux et la traite comme une coupe de terrain. Au-dessus du sol, la même tempête : à gauche, une maison de bois sur le sable, éclairs et vague qui se brise à ses pieds ; à droite, une maison de pierre à toit rouge, sur un rocher sombre, sous un ciel qui s’éclaircit. Sous la surface, il peint ce que la parabole ne montre pas : sous le sable, des figures isolées, adossées à de frêles piliers, certaines un masque à la main ; sous le roc, un empilement de blocs où l’on lit un livre lumineux, où l’on relève un vieillard, où une famille se serre sous le même manteau. Les fondations racontent ce que la façade ne dit pas.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Les maisons">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="artwork">
+          <summary>
+            <span class="artwork-num">16</span>
+            <span class="artwork-title">Le trésor caché dans un champ</span>
+            <span class="artwork-medium">Huile sur toile</span>
+            <span class="chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </summary>
+          <div class="artwork-body">
+            <div class="artwork-media">
+              <img src="images/le-tresor-cache-dans-un-champ.jpg" alt="Le trésor caché dans un champ, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <div class="artwork-details">
+              <figure class="detail-thumb">
+                <img src="images/le-tresor-cache-dans-un-champ-detail-4.jpg" alt="Le trésor caché dans un champ — Détail : le disque d’or et la cité" loading="lazy"/>
+                <figcaption>Détail : le disque d’or et la cité</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/le-tresor-cache-dans-un-champ-detail-2.jpg" alt="Le trésor caché dans un champ — Détail : les silhouettes blanches sous la terre" loading="lazy"/>
+                <figcaption>Détail : les silhouettes blanches sous la terre</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/le-tresor-cache-dans-un-champ-detail-3.jpg" alt="Le trésor caché dans un champ — Détail : la nuit étoilée et les racines" loading="lazy"/>
+                <figcaption>Détail : la nuit étoilée et les racines</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/le-tresor-cache-dans-un-champ-detail-1.jpg" alt="Le trésor caché dans un champ — Détail : les deux musiciens" loading="lazy"/>
+                <figcaption>Détail : les deux musiciens</figcaption>
+              </figure>
+              <figure class="detail-thumb">
+                <img src="images/le-tresor-cache-dans-un-champ-detail-5.jpg" alt="Le trésor caché dans un champ — Détail : le village aux palmiers" loading="lazy"/>
+                <figcaption>Détail : le village aux palmiers</figcaption>
+              </figure>
+              </div>
+            </div>
+            <div class="artwork-text">
+              <div class="passage">
+                <p class="passage-label">Passage biblique <span class="ref">Matthieu 13, 44-45</span></p>
+                <p class="passage-text">Le royaume des cieux est comparable à un trésor caché dans un champ : l’homme qui le découvre le cache de nouveau et, dans sa joie, va vendre tout ce qu’il possède pour acheter ce champ. Il est aussi comparable à un marchand en quête de belles perles : en ayant trouvé une de grande valeur, il vend tout ce qu’il a et l’achète.</p>
+              </div>
+              <div class="vision">
+                <p class="vision-label">Regard de l’artiste</p>
+                <p class="vision-text">Quentin découpe la parabole en facettes, comme un vitrail cubiste : collines vertes, village aux palmiers, olivier. Sous un faisceau de lumière dorée, un homme penché sur sa bêche met au jour non pas un coffre, mais un disque d’or qui ouvre sur une cité à coupoles. Sous la terre, une nuit étoilée où se pressent des silhouettes blanches. En bas, la composition bascule à l’envers : un homme barbu dans un halo d’or, une flamme, deux musiciens, flûte et lyre. C’est l’image de la joie qui fait tout quitter, selon le texte.</p>
+              </div>
+              <button type="button" class="mini-cta" data-open-form data-project="Le trésor caché dans un champ">Cette œuvre m’intéresse →</button>
+            </div>
+          </div>
+        </details>
+    </div>
+  </main>
+
+  <aside class="band services-band" id="commandes">
+    <span class="eyebrow">Sur mesure</span>
+    <h2>Une œuvre unique, pensée pour vous</h2>
+    <div class="band-body">
+      <p>Quentin réalise des commandes personnalisées, dans la continuité de son travail sur la
+      couleur, le mouvement et le sens. Deux façons de faire naître une toile qui vous
+      ressemble&nbsp;:</p>
+    </div>
+    <div class="card">
+      <span class="opt-label">OPTION 1</span>
+      <h3>Votre passage biblique en peinture</h3>
+      <p>Un verset qui vous accompagne depuis longtemps&nbsp;? Quentin le fait naître en
+      peinture, en y tissant références bibliques et clins d’œil contemporains.</p>
+    </div>
+    <div class="card">
+      <span class="opt-label">OPTION 2</span>
+      <h3>Un instant de vie de famille, sur toile</h3>
+      <p>Un repas, un fou rire, un dimanche ordinaire&nbsp;: Quentin privilégie le mouvement et
+      l’émotion du moment plutôt que la ressemblance photographique des visages — un
+      lâcher-prise assumé, plutôt qu’un portrait figé.</p>
+    </div>
+    <a href="#contact" class="btn btn--solid cta">Demander un devis</a>
+  </aside>
+
+</div>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="eyebrow">Commande</span>
+    <h2>Racontez votre projet</h2>
+    <p class="lead">Quelques lignes suffisent pour démarrer l’échange&nbsp;: votre idée,
+    l’option qui vous inspire, et la meilleure façon de vous recontacter.</p>
+
+    <form class="commission-form" id="commissionForm">
+      <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off"/>
+      <div class="row-2">
+        <div class="field">
+          <label for="f-name">Nom et prénom</label>
+          <input id="f-name" name="name" type="text" required autocomplete="name"/>
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email"/>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-phone">Téléphone (facultatif)</label>
+        <input id="f-phone" name="phone" type="tel" autocomplete="tel"/>
+      </div>
+      <div class="field">
+        <label>Votre projet</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" id="opt-existante" name="project_type" value="Acheter une œuvre existante"/> Acheter une œuvre existante</label>
+          <label class="radio-option"><input type="radio" name="project_type" value="Passage biblique" checked/> Un passage biblique</label>
+          <label class="radio-option"><input type="radio" name="project_type" value="Vie de famille"/> Un moment de vie de famille</label>
+          <label class="radio-option"><input type="radio" name="project_type" value="Autre"/> Autre projet</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-message">Expliquez votre projet</label>
+        <textarea id="f-message" name="message" required placeholder="Le passage biblique choisi, ou le moment de vie de famille que vous souhaitez faire peindre, le format envisagé, vos couleurs préférées…"></textarea>
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="btn btn--solid" id="submitBtn">Envoyer ma demande</button>
+        <span class="form-note">Réponse directement par e-mail, sous quelques jours.</span>
+      </div>
+      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © Quentin Kuntzmann — Artiste peintre — Beaujolais
+</footer>
+
+<script>
+(function() {
+  // Recipient address is intentionally not present as plain text in the page source.
+  var codes = [113,117,101,110,116,105,110,46,102,117,114,111,110,64,103,109,97,105,108,46,99,111,109];
+  var email = String.fromCharCode.apply(null, codes);
+
+  var form = document.getElementById('commissionForm');
+  var status = document.getElementById('formStatus');
+  var submitBtn = document.getElementById('submitBtn');
+
+  document.querySelectorAll('[data-open-form]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var project = btn.getAttribute('data-project');
+      var msg = document.getElementById('f-message');
+      var radio = document.getElementById('opt-existante');
+      if (radio) { radio.checked = true; }
+      if (msg && !msg.value) {
+        msg.value = 'Bonjour, l’œuvre « ' + project + ' » m’intéresse. Est-elle encore disponible ? ';
+      }
+      document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+      setTimeout(function() { msg && msg.focus(); }, 400);
+    });
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (form._gotcha && form._gotcha.value) return; // spam bot caught
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi en cours…';
+    status.textContent = '';
+    status.className = 'form-status';
+
+    var data = new FormData(form);
+    data.append('_subject', 'Nouvelle demande de commande — portfolio');
+    data.append('_captcha', 'false');
+    data.append('_template', 'table');
+
+    fetch('https://formsubmit.co/ajax/' + email, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    })
+    .then(function(r) { return r.json(); })
+    .then(function() {
+      status.textContent = 'Merci ! Votre demande a bien été envoyée, vous recevrez une réponse par e-mail.';
+      status.className = 'form-status ok';
+      form.reset();
+      submitBtn.textContent = 'Envoyer ma demande';
+      submitBtn.disabled = false;
+    })
+    .catch(function() {
+      status.textContent = 'Une erreur est survenue. Vous pouvez réessayer, ou écrire directement depuis votre messagerie.';
+      status.className = 'form-status err';
+      submitBtn.textContent = 'Envoyer ma demande';
+      submitBtn.disabled = false;
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
