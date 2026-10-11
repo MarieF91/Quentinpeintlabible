@@ -221,6 +221,7 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; margin: 0; }
   color: var(--oxide); text-transform: uppercase; border-bottom: 1px solid transparent;
 }
 .mini-cta:hover { border-color: var(--oxide); }
+.mini-cta { display: inline-block; text-decoration: none; }
 
 /* ---------- mobile stacking ---------- */
 @media (max-width: 980px) {
@@ -241,34 +242,8 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; margin: 0; }
 .contact h2 { font-size: clamp(1.8rem,3vw,2.4rem); margin-top: 12px; color: var(--paper-light); }
 .contact p.lead { color: #cfc6b6; margin-top: 14px; font-size: 0.98rem; max-width: 52ch; }
 
-form.commission-form { margin-top: 40px; display: grid; gap: 20px; }
-.field { display: grid; gap: 8px; }
-.field label { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: #cfc6b6; }
-.field input, .field textarea, .field select {
-  background: rgba(247,242,232,0.06); border: 1px solid rgba(247,242,232,0.25);
-  color: var(--paper-light); padding: 12px 14px; font-family: 'Work Sans', sans-serif;
-  font-size: 0.95rem; border-radius: var(--radius); outline: none;
-  transition: border-color .2s, background .2s;
-}
-.field input:focus, .field textarea:focus, .field select:focus {
-  border-color: var(--gold); background: rgba(247,242,232,0.1);
-}
-.field textarea { min-height: 130px; resize: vertical; }
-.radio-group { display: flex; gap: 22px; flex-wrap: wrap; }
-.radio-option {
-  display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #e6e0d3; cursor: pointer;
-}
-.radio-option input { accent-color: var(--gold); width: 16px; height: 16px; }
-.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
-
-.honeypot { position: absolute; left: -9999px; opacity: 0; height: 0; }
-
-.submit-row { display: flex; align-items: center; gap: 18px; margin-top: 6px; flex-wrap: wrap; }
-.form-note { font-size: 0.78rem; color: #9c927f; }
-.form-status { font-size: 0.85rem; }
-.form-status.ok { color: #b7c9a6; }
-.form-status.err { color: #d99a8c; }
+.contact-cta { margin-top: 32px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.contact-note { font-size: 0.78rem; color: #9c927f; }
 
 footer {
   padding: 28px clamp(20px,4vw,56px); text-align: center;
@@ -279,6 +254,39 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
+}
+
+/* ---------- agrandissement des images ---------- */
+.artwork-media img { cursor: zoom-in; }
+.artwork-media img:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(21,16,12,0.95);
+  padding: clamp(12px, 3vw, 40px);
+}
+.lightbox[hidden] { display: none; }
+.lb-fig { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: 100%; }
+.lb-img { max-width: min(92vw, 1400px); max-height: 80vh; width: auto; height: auto; object-fit: contain; border-radius: var(--radius); }
+.lb-cap { color: #d8d0c2; font-size: 0.85rem; text-align: center; max-width: 70ch; }
+.lb-count { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); margin-left: 10px; }
+.lb-close, .lb-nav {
+  position: absolute; background: rgba(247,242,232,0.08); color: var(--paper-light);
+  border: 1px solid rgba(247,242,232,0.3); border-radius: 50%;
+  width: 44px; height: 44px; font-size: 1.6rem; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; padding: 0;
+  transition: background .2s;
+}
+.lb-close:hover, .lb-nav:hover { background: rgba(247,242,232,0.2); }
+.lb-close { top: 16px; right: 16px; }
+.lb-prev { left: 16px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 16px; top: 50%; transform: translateY(-50%); }
+.lightbox.single .lb-nav { display: none; }
+@media (max-width: 720px) {
+  .lb-nav { top: auto; bottom: 16px; transform: none; }
+  .lb-prev { left: calc(50% - 56px); }
+  .lb-next { right: calc(50% - 56px); }
+  .lb-img { max-height: 70vh; }
 }
 </style>
 </head>
@@ -323,9 +331,8 @@ footer {
     <h2>Présentation</h2>
     <div class="band-body">
       <p><strong>Peintre de la maturité,</strong> Quentin renoue avec les pinceaux abandonnés
-      vingt ans plus tôt. Ancien professeur d’histoire-géographie, il quitte le Nord pour le
-      Beaujolais — et c’est la lumière de sa nouvelle terre qui le galvanise : une vingtaine de
-      toiles naîtront en un seul semestre.</p>
+      vingt ans plus tôt. Quittant le Nord pour le Beaujolais en 2025, c’est la lumière de sa
+      nouvelle terre qui le galvanise : une vingtaine de toiles naîtront en un seul semestre.</p>
       <p><strong>Sa foi catholique est le fil rouge de son œuvre&nbsp;:</strong> chaque toile
       revisite un passage de l’Évangile qui lui est cher, dans un savant jeu de piste où
       références bibliques et clins d’œil contemporains se répondent. Réalisme, surréalisme,
@@ -344,7 +351,7 @@ footer {
       <p>Chaque toile associe, quand elle existe, le passage biblique qui l’a inspirée et le
       regard porté par l’artiste sur son propre travail. Cliquez sur un titre pour déplier.
       Une œuvre vous touche particulièrement&nbsp;? Elle est peut-être encore disponible à
-      l’achat — un simple message depuis sa fiche suffit pour nous le demander.</p>
+      l’achat — un simple message Instagram depuis sa fiche suffit pour nous le demander.</p>
     </div>
     <div class="accordion">
       
@@ -375,7 +382,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Toile inaugurale du cycle, elle pose les bases du langage pictural de Quentin : une Vierge tout en douceur, silhouette épurée et couleurs chaudes, qui doit autant à l’iconographie mariale classique qu’à un regard contemporain et naïf. La tendresse du geste maternel ouvre la série comme une promesse : celle d’un art qui conjugue foi profonde et fraîcheur du trait.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Vierge à l’enfant">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -402,7 +409,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Quentin construit la scène entre réalisme du personnage et stylisation du paysage beaujolais, ancrant cette vérité intemporelle dans la lumière familiere de sa terre d’adoption. Le détail de la brebis isolée, à l’écart près des rochers, semble faire écho à la brebis perdue que le berger part chercher (Luc 15, 4-7) — comme si Quentin superposait, en une seule image, la promesse du bon pasteur et le soin porté à celui qui s’égare.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Le bon berger">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -435,7 +442,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Le Cœur sacré, irradiant de rouges et d’ors, donne une forme visuelle à cette promesse d’eau vive : un cœur qui ne se contient pas, qui déborde et se répand. Quentin traduit le débordement du texte biblique par un jaillissement de couleur et de lumière, faisant de la toile une source à laquelle le regard vient, lui aussi, s’abreuver.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Cœur sacré">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -492,7 +499,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Toile de grand format, elle déploie toute l’énergie du récit : la barque, les filets qui se tendent à rompre, la surprise d’une abondance qu’aucun effort humain n’aurait pu produire. Le format XL n’est pas un hasard : il donne au spectateur la sensation d’être lui-même embarqué, saisi par le même vertige — celui d’une confiance qui dépasse ce qu’on croyait possible, et qui, comme pour Pierre, change une trajectoire entière.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="La pêche miraculeuse">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -525,7 +532,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Quentin aligne ses dix silhouettes comme une frise, jouant du clair-obscur pour distinguer celles dont la lampe brille encore de celles dont la flamme vacille. La toile est une invitation à la vigilance autant qu’un exercice de composition rythmique, chaque figure répondant à la suivante comme les temps d’une même veillée.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Les dix vierges">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -552,7 +559,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Le Semeur donne corps à cette parabole par l’image d’une pousse qui s’enracine et se greffe à la vigne : une terre nourriciere, des racines profondes, la promesse d’un fruit abondant. Quentin y célèbre, en creux, sa propre expérience : celle d’un homme qui a laissé la peinture reprendre racine après vingt années de mise en sommeil.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Le semeur">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -579,7 +586,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Quentin actualise la parabole en prêtant les traits d’un magnat de la tech à son riche insensé : les liasses de pièces d’or frappées du symbole bitcoin remplacent les greniers antiques, et l’oiseau perché dans l’arbre n’est pas choisi au hasard — il évoque, avec un clin d’œil malicieux, l’emblème d’un célèbre réseau social. Une manière très actuelle de poser la même question que le texte : à quoi bon accumuler, si l’âme peut être redemandée cette nuit même ?</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Le riche">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -612,7 +619,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">En choisissant la figure du boulanger, Quentin ramène la parabole à un geste quotidien et familier : pétrir, attendre, faire lever. Le sujet fait écho à sa propre vie de père de famille nombreuse, où il retrouve dans les gestes domestiques la même œuvre patiente et silencieuse que celle du royaume qui grandit de l’intérieur.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Le boulanger">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -639,7 +646,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">La Jeune Pousse s’attarde sur cet instant fragile où la graine perce la terre : promesse encore incertaine, mais déjà vivante. Le geste pictural, plus délicat, plus naïf que dans les autres toiles, épouse la fragilité du sujet et fait écho, une fois encore, au propre recommencement artistique de Quentin.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="La jeune pousse">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -665,7 +672,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Elle capte un geste minuscule et pourtant immense : une offrande donnée dans le dénuement, sans calcul ni mise en scène. Quentin choisit la sobriété — peu de couleurs, une silhouette recueillie — pour que la toile porte, par son silence même, la dignité du don total.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="La veuve">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -691,7 +698,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Le temps d’une toile, Quentin quitte le cycle biblique pour un paysage puisé dans les reliefs de La Réunion. La toile témoigne de sa capacité à faire varier son geste selon le sujet : ici, la lumière et la matière du paysage priment — la preuve que son art ne se limite pas à un seul registre.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Les Maques – Cilaos">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -707,10 +714,10 @@ footer {
           </summary>
           <div class="artwork-body">
             <div class="artwork-media">
-              <img src="images/le-bon-samaritain.jpg" alt="Le bon samaritain, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <img src="images/le-bon-samaritain.jpg" alt="Le bon samaritain, Huile sur toile, Quentin Kuntzmann" loading="lazy" data-full="images/large/le-bon-samaritain.jpg"/>
               <div class="artwork-details">
               <figure class="detail-thumb">
-                <img src="images/le-bon-samaritain-detail-1.jpg" alt="Le bon samaritain — Détail : le Samaritain et l’étoffe rouge" loading="lazy"/>
+                <img src="images/le-bon-samaritain-detail-1.jpg" alt="Le bon samaritain — Détail : le Samaritain et l’étoffe rouge" loading="lazy" data-full="images/large/le-bon-samaritain-detail-1.jpg"/>
                 <figcaption>Détail : le Samaritain et l’étoffe rouge</figcaption>
               </figure>
               </div>
@@ -724,7 +731,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Quentin transpose la route de Jéricho sur un bitume d’aujourd’hui, de nuit, sous un ciel étoilé : panneau «&nbsp;Samarie&nbsp;», lampadaire, glissière de sécurité, scooter renversé. Le Samaritain, nimbé de la lumière jaune du réverbère, presse une étoffe rouge sur la blessure d’un homme en tee-shirt vert. Autour de lui, l’indifférence a des visages contemporains : un homme, téléphone à la main, qui reste à distance, une passagère qui regarde derrière sa vitre, sans pouvoir agir, une passante qui s’éloigne. Seul le cercle de lumière réunit le blessé et celui qui s’est arrêté.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Le bon samaritain">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -740,10 +747,10 @@ footer {
           </summary>
           <div class="artwork-body">
             <div class="artwork-media">
-              <img src="images/la-pierre-dangle.jpg" alt="La pierre d’angle, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <img src="images/la-pierre-dangle.jpg" alt="La pierre d’angle, Huile sur toile, Quentin Kuntzmann" loading="lazy" data-full="images/large/la-pierre-dangle.jpg"/>
               <div class="artwork-details">
               <figure class="detail-thumb">
-                <img src="images/la-pierre-dangle-detail-1.jpg" alt="La pierre d’angle — Détail : le bloc d’or en relief" loading="lazy"/>
+                <img src="images/la-pierre-dangle-detail-1.jpg" alt="La pierre d’angle — Détail : le bloc d’or en relief" loading="lazy" data-full="images/large/la-pierre-dangle-detail-1.jpg"/>
                 <figcaption>Détail : le bloc d’or en relief</figcaption>
               </figure>
               </div>
@@ -757,7 +764,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Quentin lit ce verset du psaume à deux niveaux. Au premier regard, la toile montre une rupture : la nuit bleue des vieillards à capuche face au jour doré des églises, deux mondes qui se regardent en chiens de faïence. Mais le psaume est une louange : Dieu n’abandonne pas ceux que tous avaient rejetés (Moïse bègue, David berger, Amos cultivateur, Gédéon le plus faible des siens). À droite, trois édifices qu’il aime pour leur beauté, un par grande branche du christianisme : le temple Saint-Guillaume et la cathédrale Notre-Dame de Strasbourg, et une église orthodoxe qu’il a dû inventer. Schisme&nbsp;? Il ne le croit pas : deux murs bâtis côte à côte sans se lier s’effondrent, et la pierre d’angle, bloc d’or en relief, les relie en s’appuyant sur l’un puis sur l’autre. Pierre d’angle, non première pierre : le Christ n’est pas venu détruire ni recommencer, mais faire le lien.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="La pierre d’angle">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -773,22 +780,22 @@ footer {
           </summary>
           <div class="artwork-body">
             <div class="artwork-media">
-              <img src="images/le-vigneron.jpg" alt="Le vigneron, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <img src="images/le-vigneron.jpg" alt="Le vigneron, Huile sur toile, Quentin Kuntzmann" loading="lazy" data-full="images/large/le-vigneron.jpg"/>
               <div class="artwork-details">
               <figure class="detail-thumb">
-                <img src="images/le-vigneron-detail-1.jpg" alt="Le vigneron — Détail : le visage du vigneron" loading="lazy"/>
+                <img src="images/le-vigneron-detail-1.jpg" alt="Le vigneron — Détail : le visage du vigneron" loading="lazy" data-full="images/large/le-vigneron-detail-1.jpg"/>
                 <figcaption>Détail : le visage du vigneron</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/le-vigneron-detail-2.jpg" alt="Le vigneron — Détail : la taille du cep" loading="lazy"/>
+                <img src="images/le-vigneron-detail-2.jpg" alt="Le vigneron — Détail : la taille du cep" loading="lazy" data-full="images/large/le-vigneron-detail-2.jpg"/>
                 <figcaption>Détail : la taille du cep</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/le-vigneron-detail-3.jpg" alt="Le vigneron — Détail : les grappes et la tour dorée" loading="lazy"/>
+                <img src="images/le-vigneron-detail-3.jpg" alt="Le vigneron — Détail : les grappes et la tour dorée" loading="lazy" data-full="images/large/le-vigneron-detail-3.jpg"/>
                 <figcaption>Détail : les grappes et la tour dorée</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/le-vigneron-detail-4.jpg" alt="Le vigneron — Détail : le soleil dans les nuages" loading="lazy"/>
+                <img src="images/le-vigneron-detail-4.jpg" alt="Le vigneron — Détail : le soleil dans les nuages" loading="lazy" data-full="images/large/le-vigneron-detail-4.jpg"/>
                 <figcaption>Détail : le soleil dans les nuages</figcaption>
               </figure>
               </div>
@@ -802,7 +809,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Quentin ancre la parabole dans les coteaux de sa terre d’adoption : rangs de vigne, tour de pierre dorée à l’horizon, ciel où un soleil perce les nuages. Au premier plan, un vigneron à barbe blanche et tablier vert, à genoux, sécateur en main, taille le cep ; à ses côtés, les sarments coupés brûlent, rappel du verset 6, tandis que de lourdes grappes violettes pendent au sarment. La taille, geste qui peut sembler dur, est peinte comme un geste d’attention.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Le vigneron">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -818,30 +825,30 @@ footer {
           </summary>
           <div class="artwork-body">
             <div class="artwork-media">
-              <img src="images/les-maisons.jpg" alt="Les maisons, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <img src="images/les-maisons.jpg" alt="Les maisons, Huile sur toile, Quentin Kuntzmann" loading="lazy" data-full="images/large/les-maisons.jpg"/>
               <div class="artwork-details">
               <figure class="detail-thumb">
-                <img src="images/les-maisons-detail-3.jpg" alt="Les maisons — Détail : sous le sable, les figures isolées" loading="lazy"/>
+                <img src="images/les-maisons-detail-3.jpg" alt="Les maisons — Détail : sous le sable, les figures isolées" loading="lazy" data-full="images/large/les-maisons-detail-3.jpg"/>
                 <figcaption>Détail : sous le sable, les figures isolées</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/les-maisons-detail-4.jpg" alt="Les maisons — Détail : sous le roc, la lecture, l’entraide, la famille" loading="lazy"/>
+                <img src="images/les-maisons-detail-4.jpg" alt="Les maisons — Détail : sous le roc, la lecture, l’entraide, la famille" loading="lazy" data-full="images/large/les-maisons-detail-4.jpg"/>
                 <figcaption>Détail : sous le roc, la lecture, l’entraide, la famille</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/les-maisons-detail-2.jpg" alt="Les maisons — Détail : la maison sur le sable" loading="lazy"/>
+                <img src="images/les-maisons-detail-2.jpg" alt="Les maisons — Détail : la maison sur le sable" loading="lazy" data-full="images/large/les-maisons-detail-2.jpg"/>
                 <figcaption>Détail : la maison sur le sable</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/les-maisons-detail-1.jpg" alt="Les maisons — Détail : la maison sur le roc" loading="lazy"/>
+                <img src="images/les-maisons-detail-1.jpg" alt="Les maisons — Détail : la maison sur le roc" loading="lazy" data-full="images/large/les-maisons-detail-1.jpg"/>
                 <figcaption>Détail : la maison sur le roc</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/les-maisons-detail-6.jpg" alt="Les maisons — La moitié «&nbsp;sable&nbsp;», de plus près" loading="lazy"/>
+                <img src="images/les-maisons-detail-6.jpg" alt="Les maisons — La moitié «&nbsp;sable&nbsp;», de plus près" loading="lazy" data-full="images/large/les-maisons-detail-6.jpg"/>
                 <figcaption>La moitié «&nbsp;sable&nbsp;», de plus près</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/les-maisons-detail-5.jpg" alt="Les maisons — La moitié «&nbsp;roc&nbsp;», de plus près" loading="lazy"/>
+                <img src="images/les-maisons-detail-5.jpg" alt="Les maisons — La moitié «&nbsp;roc&nbsp;», de plus près" loading="lazy" data-full="images/large/les-maisons-detail-5.jpg"/>
                 <figcaption>La moitié «&nbsp;roc&nbsp;», de plus près</figcaption>
               </figure>
               </div>
@@ -855,7 +862,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Quentin coupe la toile en deux et la traite comme une coupe de terrain. Au-dessus du sol, la même tempête : à gauche, une maison de bois sur le sable, éclairs et vague qui se brise à ses pieds ; à droite, une maison de pierre à toit rouge, sur un rocher sombre, sous un ciel qui s’éclaircit. Sous la surface, il peint ce que la parabole ne montre pas : sous le sable, des figures isolées, adossées à de frêles piliers, certaines un masque à la main ; sous le roc, un empilement de blocs où l’on lit un livre lumineux, où l’on relève un vieillard, où une famille se serre sous le même manteau. Les fondations racontent ce que la façade ne dit pas.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Les maisons">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -871,26 +878,26 @@ footer {
           </summary>
           <div class="artwork-body">
             <div class="artwork-media">
-              <img src="images/le-tresor-cache-dans-un-champ.jpg" alt="Le trésor caché dans un champ, Huile sur toile, Quentin Kuntzmann" loading="lazy"/>
+              <img src="images/le-tresor-cache-dans-un-champ.jpg" alt="Le trésor caché dans un champ, Huile sur toile, Quentin Kuntzmann" loading="lazy" data-full="images/large/le-tresor-cache-dans-un-champ.jpg"/>
               <div class="artwork-details">
               <figure class="detail-thumb">
-                <img src="images/le-tresor-cache-dans-un-champ-detail-4.jpg" alt="Le trésor caché dans un champ — Détail : le disque d’or et la cité" loading="lazy"/>
+                <img src="images/le-tresor-cache-dans-un-champ-detail-4.jpg" alt="Le trésor caché dans un champ — Détail : le disque d’or et la cité" loading="lazy" data-full="images/large/le-tresor-cache-dans-un-champ-detail-4.jpg"/>
                 <figcaption>Détail : le disque d’or et la cité</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/le-tresor-cache-dans-un-champ-detail-2.jpg" alt="Le trésor caché dans un champ — Détail : les silhouettes blanches sous la terre" loading="lazy"/>
+                <img src="images/le-tresor-cache-dans-un-champ-detail-2.jpg" alt="Le trésor caché dans un champ — Détail : les silhouettes blanches sous la terre" loading="lazy" data-full="images/large/le-tresor-cache-dans-un-champ-detail-2.jpg"/>
                 <figcaption>Détail : les silhouettes blanches sous la terre</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/le-tresor-cache-dans-un-champ-detail-3.jpg" alt="Le trésor caché dans un champ — Détail : la nuit étoilée et les racines" loading="lazy"/>
+                <img src="images/le-tresor-cache-dans-un-champ-detail-3.jpg" alt="Le trésor caché dans un champ — Détail : la nuit étoilée et les racines" loading="lazy" data-full="images/large/le-tresor-cache-dans-un-champ-detail-3.jpg"/>
                 <figcaption>Détail : la nuit étoilée et les racines</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/le-tresor-cache-dans-un-champ-detail-1.jpg" alt="Le trésor caché dans un champ — Détail : les deux musiciens" loading="lazy"/>
+                <img src="images/le-tresor-cache-dans-un-champ-detail-1.jpg" alt="Le trésor caché dans un champ — Détail : les deux musiciens" loading="lazy" data-full="images/large/le-tresor-cache-dans-un-champ-detail-1.jpg"/>
                 <figcaption>Détail : les deux musiciens</figcaption>
               </figure>
               <figure class="detail-thumb">
-                <img src="images/le-tresor-cache-dans-un-champ-detail-5.jpg" alt="Le trésor caché dans un champ — Détail : le village aux palmiers" loading="lazy"/>
+                <img src="images/le-tresor-cache-dans-un-champ-detail-5.jpg" alt="Le trésor caché dans un champ — Détail : le village aux palmiers" loading="lazy" data-full="images/large/le-tresor-cache-dans-un-champ-detail-5.jpg"/>
                 <figcaption>Détail : le village aux palmiers</figcaption>
               </figure>
               </div>
@@ -904,7 +911,7 @@ footer {
                 <p class="vision-label">Regard de l’artiste</p>
                 <p class="vision-text">Quentin découpe la parabole en facettes, comme un vitrail cubiste : collines vertes, village aux palmiers, olivier. Sous un faisceau de lumière dorée, un homme penché sur sa bêche met au jour non pas un coffre, mais un disque d’or qui ouvre sur une cité à coupoles. Sous la terre, une nuit étoilée où se pressent des silhouettes blanches. En bas, la composition bascule à l’envers : un homme barbu dans un halo d’or, une flamme, deux musiciens, flûte et lyre. C’est l’image de la joie qui fait tout quitter, selon le texte.</p>
               </div>
-              <button type="button" class="mini-cta" data-open-form data-project="Le trésor caché dans un champ">Cette œuvre m’intéresse →</button>
+              <a class="mini-cta" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Cette œuvre m’intéresse →</a>
             </div>
           </div>
         </details>
@@ -932,7 +939,7 @@ footer {
       l’émotion du moment plutôt que la ressemblance photographique des visages — un
       lâcher-prise assumé, plutôt qu’un portrait figé.</p>
     </div>
-    <a href="#contact" class="btn btn--solid cta">Demander un devis</a>
+    <a href="https://www.instagram.com/quandtupeinslabible/" class="btn btn--solid cta" target="_blank" rel="noopener">Demander un devis</a>
   </aside>
 
 </div>
@@ -941,44 +948,13 @@ footer {
   <div class="contact-inner">
     <span class="eyebrow">Commande</span>
     <h2>Racontez votre projet</h2>
-    <p class="lead">Quelques lignes suffisent pour démarrer l’échange&nbsp;: votre idée,
-    l’option qui vous inspire, et la meilleure façon de vous recontacter.</p>
-
-    <form class="commission-form" id="commissionForm">
-      <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off"/>
-      <div class="row-2">
-        <div class="field">
-          <label for="f-name">Nom et prénom</label>
-          <input id="f-name" name="name" type="text" required autocomplete="name"/>
-        </div>
-        <div class="field">
-          <label for="f-email">E-mail</label>
-          <input id="f-email" name="email" type="email" required autocomplete="email"/>
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-phone">Téléphone (facultatif)</label>
-        <input id="f-phone" name="phone" type="tel" autocomplete="tel"/>
-      </div>
-      <div class="field">
-        <label>Votre projet</label>
-        <div class="radio-group">
-          <label class="radio-option"><input type="radio" id="opt-existante" name="project_type" value="Acheter une œuvre existante"/> Acheter une œuvre existante</label>
-          <label class="radio-option"><input type="radio" name="project_type" value="Passage biblique" checked/> Un passage biblique</label>
-          <label class="radio-option"><input type="radio" name="project_type" value="Vie de famille"/> Un moment de vie de famille</label>
-          <label class="radio-option"><input type="radio" name="project_type" value="Autre"/> Autre projet</label>
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-message">Expliquez votre projet</label>
-        <textarea id="f-message" name="message" required placeholder="Le passage biblique choisi, ou le moment de vie de famille que vous souhaitez faire peindre, le format envisagé, vos couleurs préférées…"></textarea>
-      </div>
-      <div class="submit-row">
-        <button type="submit" class="btn btn--solid" id="submitBtn">Envoyer ma demande</button>
-        <span class="form-note">Réponse directement par e-mail, sous quelques jours.</span>
-      </div>
-      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-    </form>
+    <p class="lead">Une œuvre vous touche, ou vous avez un passage biblique ou un moment de famille
+    en tête&nbsp;? Les commandes passent par Instagram&nbsp;: écrivez-nous en message privé, avec
+    l’œuvre qui vous intéresse ou votre idée, le format envisagé et vos couleurs préférées.</p>
+    <div class="contact-cta">
+      <a class="btn btn--solid" href="https://www.instagram.com/quandtupeinslabible/" target="_blank" rel="noopener">Écrire sur Instagram</a>
+      <span class="contact-note">@quandtupeinslabible — réponse sous quelques jours.</span>
+    </div>
   </div>
 </section>
 
@@ -988,61 +964,88 @@ footer {
 
 <script>
 (function() {
-  // Recipient address is intentionally not present as plain text in the page source.
-  var codes = [113,117,101,110,116,105,110,46,102,117,114,111,110,64,103,109,97,105,108,46,99,111,109];
-  var email = String.fromCharCode.apply(null, codes);
+  var imgs = [], idx = 0, lastFocus = null, startX = null;
 
-  var form = document.getElementById('commissionForm');
-  var status = document.getElementById('formStatus');
-  var submitBtn = document.getElementById('submitBtn');
+  var box = document.createElement('div');
+  box.className = 'lightbox';
+  box.hidden = true;
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
+  box.setAttribute('aria-label', 'Agrandissement de l’image');
+  box.innerHTML =
+    '<button type="button" class="lb-close" aria-label="Fermer">&times;</button>' +
+    '<button type="button" class="lb-nav lb-prev" aria-label="Image précédente">&#8249;</button>' +
+    '<figure class="lb-fig"><img class="lb-img" alt=""/>' +
+    '<figcaption class="lb-cap"><span class="lb-text"></span><span class="lb-count"></span></figcaption></figure>' +
+    '<button type="button" class="lb-nav lb-next" aria-label="Image suivante">&#8250;</button>';
+  document.body.appendChild(box);
 
-  document.querySelectorAll('[data-open-form]').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var project = btn.getAttribute('data-project');
-      var msg = document.getElementById('f-message');
-      var radio = document.getElementById('opt-existante');
-      if (radio) { radio.checked = true; }
-      if (msg && !msg.value) {
-        msg.value = 'Bonjour, l’œuvre « ' + project + ' » m’intéresse. Est-elle encore disponible ? ';
-      }
-      document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
-      setTimeout(function() { msg && msg.focus(); }, 400);
+  var lbImg = box.querySelector('.lb-img');
+  var lbText = box.querySelector('.lb-text');
+  var lbCount = box.querySelector('.lb-count');
+  var btnClose = box.querySelector('.lb-close');
+
+  function caption(el) {
+    var d = el.closest('details');
+    var title = d ? d.querySelector('.artwork-title').textContent : '';
+    var fig = el.closest('figure');
+    var cap = fig && fig.querySelector('figcaption');
+    return cap ? title + ' — ' + cap.textContent : title;
+  }
+
+  function show(i) {
+    idx = (i + imgs.length) % imgs.length;
+    var el = imgs[idx];
+    lbImg.src = el.getAttribute('data-full') || el.currentSrc || el.src;
+    lbImg.alt = el.alt;
+    lbText.textContent = caption(el);
+    lbCount.textContent = imgs.length > 1 ? (idx + 1) + ' / ' + imgs.length : '';
+  }
+
+  function open(el) {
+    imgs = [].slice.call(el.closest('.artwork-media').querySelectorAll('img'));
+    lastFocus = el;
+    box.classList.toggle('single', imgs.length < 2);
+    show(imgs.indexOf(el));
+    box.hidden = false;
+    document.body.style.overflow = 'hidden';
+    btnClose.focus();
+  }
+
+  function close() {
+    box.hidden = true;
+    lbImg.removeAttribute('src');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.artwork-media img').forEach(function(img) {
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    img.addEventListener('click', function() { open(img); });
+    img.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); }
     });
   });
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (form._gotcha && form._gotcha.value) return; // spam bot caught
+  btnClose.addEventListener('click', close);
+  box.querySelector('.lb-prev').addEventListener('click', function() { show(idx - 1); });
+  box.querySelector('.lb-next').addEventListener('click', function() { show(idx + 1); });
+  box.addEventListener('click', function(e) { if (e.target === box) close(); });
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Envoi en cours…';
-    status.textContent = '';
-    status.className = 'form-status';
+  document.addEventListener('keydown', function(e) {
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+  });
 
-    var data = new FormData(form);
-    data.append('_subject', 'Nouvelle demande de commande — portfolio');
-    data.append('_captcha', 'false');
-    data.append('_template', 'table');
-
-    fetch('https://formsubmit.co/ajax/' + email, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: data
-    })
-    .then(function(r) { return r.json(); })
-    .then(function() {
-      status.textContent = 'Merci ! Votre demande a bien été envoyée, vous recevrez une réponse par e-mail.';
-      status.className = 'form-status ok';
-      form.reset();
-      submitBtn.textContent = 'Envoyer ma demande';
-      submitBtn.disabled = false;
-    })
-    .catch(function() {
-      status.textContent = 'Une erreur est survenue. Vous pouvez réessayer, ou écrire directement depuis votre messagerie.';
-      status.className = 'form-status err';
-      submitBtn.textContent = 'Envoyer ma demande';
-      submitBtn.disabled = false;
-    });
+  box.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+  box.addEventListener('touchend', function(e) {
+    if (startX === null) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50 && imgs.length > 1) show(idx + (dx < 0 ? 1 : -1));
+    startX = null;
   });
 })();
 </script>
